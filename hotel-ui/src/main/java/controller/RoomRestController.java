@@ -70,5 +70,18 @@ public class RoomRestController {
         admin.roomUpdatePrice(number,price);
         return ResponseEntity.status(HttpStatus.OK).body("Цена комнаты " + number + " успешно изменен на " + price + "!");
     }
+    @GetMapping(value = "/freeAtDate")
+    public List<RoomDTO> getFreeRoomsAtDate(@RequestParam(value = "date", required = true) String date) throws HotelException {
+        return admin.getFreeRoomsAtDateDto(date);
+    }
+    @GetMapping(value = "/guestsAlpha")
+    public List<InGuestDTO> getAllGuestsByAlpha() throws HotelException {
+        return admin.getGuestsByAlphaDto();
+    }
+
+    @GetMapping(value = "/guestsByCheckout")
+    public List<InGuestDTO> getAllGuestsByCheckoutDate() throws HotelException {
+        return admin.getGuestsByCheckoutDateDto();
+    }
 
 }
