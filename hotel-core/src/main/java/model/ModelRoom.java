@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -26,11 +27,14 @@ public class ModelRoom implements Serializable {
     private int capacity;
     @Column(name = "stars")
     private int stars;
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "guest_id")
     private Guest guest;
-    @Transient
+    @Column(name = "checkindate")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkInDate;
-    @Transient
+    @Column(name = "checkoutdate")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkOutDate;
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Residence> residenceHistory = new ArrayList<>();
@@ -48,7 +52,9 @@ public class ModelRoom implements Serializable {
     }
 
     public void addResidence(Guest guest, LocalDate checkInDate, LocalDate checkOutDate, int maxHistorySize) {
-        residenceHistory.add(new Residence(guest, checkInDate, checkOutDate));
+        Residence newResidence = new Residence(guest, checkInDate, checkOutDate);
+        newResidence.setRoom(this);
+        residenceHistory.add(newResidence);
         if (residenceHistory.size() > maxHistorySize) {
             residenceHistory.remove(0);
         }

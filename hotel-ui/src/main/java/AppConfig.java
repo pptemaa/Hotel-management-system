@@ -3,20 +3,13 @@ import config.Config;
 import dao.*;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import view.IRoomView;
-import view.IServiceView;
-import view.RoomView;
-import view.ServiceView;
 import org.flywaydb.core.Flyway;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
@@ -26,7 +19,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
         "dao",
         "Service",
         "controller",
-        "view"
 }
 )
 @PropertySource("classpath:config.properties")
@@ -39,14 +31,6 @@ public class AppConfig {
     public Config config(){
         return new Config();
     }
-    @Bean
-    public IRoomView roomView(){
-        return new RoomView();
-    }
-    @Bean
-    public IServiceView serviceView(){
-        return new ServiceView();
-    }
     @Bean(initMethod = "migrate")
     public Flyway flyway(@Value("${jdbc.url}") String url,
                          @Value("${jdbc.user}") String user,
@@ -56,6 +40,7 @@ public class AppConfig {
     }
 
     @Bean
+    @DependsOn("flyway")
     public LocalEntityManagerFactoryBean entityManagerFactoryBean(){
         LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
         factoryBean.setPersistenceUnitName("hotelPU");

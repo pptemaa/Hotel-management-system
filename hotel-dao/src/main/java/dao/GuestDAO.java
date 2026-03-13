@@ -36,7 +36,6 @@ public class GuestDAO {
     public void remove(Guest guest) throws HotelException {
         Guest toRemove = em.find(Guest.class, guest.getId());
         if (toRemove == null) {
-            em.close();
             throw new HotelException("Ошибка при удалении гостя из БД");
         }
         try {

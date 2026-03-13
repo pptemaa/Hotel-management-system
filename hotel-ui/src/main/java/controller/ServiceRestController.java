@@ -4,6 +4,7 @@ import Service.Admin;
 import dto.OrderServiceDTO;
 import dto.ServiceCreateDTO;
 import dto.ServiceDTO;
+import dto.GuestServiceDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +44,18 @@ public class ServiceRestController {
         return admin.getAllServiceDto();
     }
 
+    @GetMapping(value = "/guestServices/price")
+    public List<GuestServiceDTO> getGuestServicesByPrice(@RequestParam("guestName") String guestName) throws HotelException {
+        return admin.getGuestServicesByPriceDto(guestName);
+    }
 
+    @GetMapping(value = "/guestServices/date")
+    public List<GuestServiceDTO> getGuestServicesByDate(@RequestParam("guestName") String guestName) throws HotelException {
+        return admin.getGuestServicesByDateDto(guestName);
+    }
 
-
+    @GetMapping(value = "/priceList")
+    public List<ServiceDTO> getServicesPriceList() throws HotelException {
+        return admin.getServicesPriceListDto();
+    }
 }

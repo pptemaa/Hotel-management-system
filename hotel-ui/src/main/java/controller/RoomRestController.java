@@ -5,6 +5,7 @@ import dto.InGuestDTO;
 import dto.OutGuestDTO;
 import dto.RoomCreateDTO;
 import dto.RoomDTO;
+import model.Residence;
 import model.Status;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -84,4 +85,28 @@ public class RoomRestController {
         return admin.getGuestsByCheckoutDateDto();
     }
 
+    @GetMapping(value = "/{number}/payment")
+    public double getRoomPayment(@PathVariable("number") int number) throws HotelException {
+        return admin.getRoomPayment(number);
+    }
+
+    @GetMapping(value = "/{number}/history")
+    public List<Residence> getRoomHistory(@PathVariable("number") int number) throws HotelException {
+        return admin.getLastGuestsForRoom(number);
+    }
+
+    @GetMapping(value = "/priceList")
+    public List<RoomDTO> getRoomsPriceList() throws HotelException {
+        return admin.getRoomsPriceListDto();
+    }
+
+    @GetMapping(value = "/count/free")
+    public long getFreeRoomsCount() throws HotelException {
+        return admin.getFreeRoomsCount();
+    }
+
+    @GetMapping(value = "/count/occupied")
+    public long getOccupiedRoomsCount() throws HotelException {
+        return admin.getOccupiedRoomsCount();
+    }
 }

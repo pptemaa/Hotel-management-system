@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -12,8 +14,10 @@ public class Residence implements Serializable {
     @JoinColumn(name = "guest_id",referencedColumnName = "id")
     private Guest guest;
     @Column(name = "checkInDate")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkInDate;
     @Column(name = "checkOutDate")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkOutDate;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +25,7 @@ public class Residence implements Serializable {
     private int id;
     @ManyToOne()
     @JoinColumn(name = "room_id",referencedColumnName = "id")
+    @JsonIgnore
     private ModelRoom room;
     public Residence(){}
     public Residence(Guest guest, LocalDate checkInDate, LocalDate checkOutDate) {

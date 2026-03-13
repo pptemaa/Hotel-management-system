@@ -19,10 +19,6 @@ public class ServiceRecordDAO {
                     .getResultList();
         } catch (Exception e) {
             throw new HotelException("Ошибка при загрузке записей услуг из БД", e);
-        } finally {
-            if (em != null && em.isOpen()) {
-                em.close();
-            }
         }
     }
 

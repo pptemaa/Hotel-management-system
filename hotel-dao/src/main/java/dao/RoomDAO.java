@@ -25,10 +25,6 @@ public class RoomDAO {
             return em.createQuery("SELECT r FROM ModelRoom r", ModelRoom.class).getResultList();
         } catch (Exception e) {
             throw new HotelException("Ошибка при загрузке комнат из БД", e);
-        }finally {
-            if (em != null && em.isOpen()) {
-                em.close();
-            }
         }
     }
 
@@ -48,6 +44,9 @@ public class RoomDAO {
                 throw new HotelException("Комната с id " + modelRoom.getId() + " не найдена");
             }
             room.setStatus(modelRoom.getStatus());
+            room.setGuest(modelRoom.getGuest());
+            room.setCheckInDate(modelRoom.getCheckInDate());
+            room.setCheckOutDate(modelRoom.getCheckOutDate());
         } catch (Exception e) {
             throw new HotelException("Ошибка при изменении статуса комнаты в БД", e);
         }
