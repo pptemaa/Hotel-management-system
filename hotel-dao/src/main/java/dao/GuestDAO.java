@@ -13,15 +13,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class GuestDAO {
     @PersistenceContext
     private EntityManager em;
+
     public List<Guest> findAll() throws HotelException {
         try {
             return em.createQuery("SELECT g FROM Guest g", Guest.class).getResultList();
-        }catch (Exception e){
-            throw new HotelException("Ошибка при получении списка гостей в БД",e);
+        } catch (Exception e) {
+            throw new HotelException("Ошибка при получении списка гостей в БД", e);
         }
     }
 

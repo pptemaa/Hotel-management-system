@@ -9,10 +9,12 @@ import model.ServiceRecord;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
 public class ServiceRecordDAO {
     @PersistenceContext
     private EntityManager em;
+
     public List<ServiceRecord> findAll() throws HotelException {
         try {
             return em.createQuery("SELECT sr FROM ServiceRecord sr", ServiceRecord.class)

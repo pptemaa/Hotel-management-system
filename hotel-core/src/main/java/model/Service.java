@@ -3,6 +3,7 @@ package model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+
 @Entity
 @Table(name = "service")
 public class Service implements Serializable {
@@ -13,12 +14,15 @@ public class Service implements Serializable {
     private double price;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable = false,unique = true)
+    @Column(name = "id", nullable = false, unique = true)
     private int Id;
-    public Service(){}
-    public Service(String name,double price){
-        this.name=name;
-        this.price=price;
+
+    public Service() {
+    }
+
+    public Service(String name, double price) {
+        this.name = name;
+        this.price = price;
     }
 
     public String getName() {
@@ -32,9 +36,11 @@ public class Service implements Serializable {
     public int getId() {
         return Id;
     }
+
     public void setId(int Id) {
         this.Id = Id;
     }
+
     public void setName(String name) {
         this.name = name;
     }

@@ -1,8 +1,10 @@
 package model;
+
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
 @Entity
 @Table(name = "serviceRecord")
 public class ServiceRecord implements Serializable {
@@ -13,15 +15,18 @@ public class ServiceRecord implements Serializable {
     private LocalDate date;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable = false,unique = true)
+    @Column(name = "id", nullable = false, unique = true)
     private int id;
     @ManyToOne()
-    @JoinColumn(name = "service_id",referencedColumnName = "id")
+    @JoinColumn(name = "service_id", referencedColumnName = "id")
     private Service service;
     @ManyToOne()
-    @JoinColumn(name = "guest_id",referencedColumnName = "id")
+    @JoinColumn(name = "guest_id", referencedColumnName = "id")
     private Guest guest;
-    public ServiceRecord(){}
+
+    public ServiceRecord() {
+    }
+
     public ServiceRecord(String name, LocalDate date) {
         this.name = name;
         this.date = date;
@@ -44,18 +49,18 @@ public class ServiceRecord implements Serializable {
     }
 
 
-
-
-
     public String getName() {
         return name;
     }
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
-        this.id=id;
+        this.id = id;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -67,7 +72,6 @@ public class ServiceRecord implements Serializable {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-
 
 
 }

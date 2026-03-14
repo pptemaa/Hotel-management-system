@@ -6,12 +6,13 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
 @Entity
 @Table(name = "residence")
 public class Residence implements Serializable {
     private static final long serialVersionUID = 1L;
     @ManyToOne
-    @JoinColumn(name = "guest_id",referencedColumnName = "id")
+    @JoinColumn(name = "guest_id", referencedColumnName = "id")
     private Guest guest;
     @Column(name = "checkInDate")
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -21,13 +22,16 @@ public class Residence implements Serializable {
     private LocalDate checkOutDate;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable = false,unique = true)
+    @Column(name = "id", nullable = false, unique = true)
     private int id;
     @ManyToOne()
-    @JoinColumn(name = "room_id",referencedColumnName = "id")
+    @JoinColumn(name = "room_id", referencedColumnName = "id")
     @JsonIgnore
     private ModelRoom room;
-    public Residence(){}
+
+    public Residence() {
+    }
+
     public Residence(Guest guest, LocalDate checkInDate, LocalDate checkOutDate) {
         this.guest = guest;
         this.checkInDate = checkInDate;

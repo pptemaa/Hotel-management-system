@@ -8,6 +8,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
+
 @Entity
 @Table(name = "room")
 public class ModelRoom implements Serializable {
@@ -18,7 +19,7 @@ public class ModelRoom implements Serializable {
     private int number;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable = false,unique = true)
+    @Column(name = "id", nullable = false, unique = true)
     private int Id;
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -38,7 +39,10 @@ public class ModelRoom implements Serializable {
     private LocalDate checkOutDate;
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Residence> residenceHistory = new ArrayList<>();
-    public ModelRoom(){}
+
+    public ModelRoom() {
+    }
+
     public ModelRoom(int number, double price, int capicity, int stars) {
         this.price = price;
         this.number = number;

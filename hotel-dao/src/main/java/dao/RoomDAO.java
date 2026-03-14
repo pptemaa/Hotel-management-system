@@ -19,6 +19,7 @@ import java.util.List;
 public class RoomDAO {
     @PersistenceContext
     private EntityManager em;
+
     public List<ModelRoom> findAll() throws HotelException {
         List<ModelRoom> result = new ArrayList<>();
         try {
@@ -39,8 +40,8 @@ public class RoomDAO {
 
     public void setStatus(ModelRoom modelRoom) throws HotelException {
         try {
-            ModelRoom room = em.find(ModelRoom.class,modelRoom.getId());
-            if (room==null){
+            ModelRoom room = em.find(ModelRoom.class, modelRoom.getId());
+            if (room == null) {
                 throw new HotelException("Комната с id " + modelRoom.getId() + " не найдена");
             }
             room.setStatus(modelRoom.getStatus());
@@ -54,11 +55,11 @@ public class RoomDAO {
 
     public void setPrice(ModelRoom modelRoom) throws HotelException {
         try {
-           ModelRoom room = em.find(ModelRoom.class,modelRoom.getId());
-           if (room==null){
-               throw new HotelException("Комната с id " + modelRoom.getId() + " не найдена");
-           }
-           room.setPrice(modelRoom.getPrice());
+            ModelRoom room = em.find(ModelRoom.class, modelRoom.getId());
+            if (room == null) {
+                throw new HotelException("Комната с id " + modelRoom.getId() + " не найдена");
+            }
+            room.setPrice(modelRoom.getPrice());
         } catch (Exception e) {
             throw new HotelException("Ошибка при изменении цены комнаты в БД", e);
         }

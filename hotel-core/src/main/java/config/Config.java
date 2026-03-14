@@ -1,27 +1,27 @@
 package config;
 
 
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.util.Properties;
+
 @Component
 public class Config {
-    public String getDataDir(){
+    public String getDataDir() {
         return dataDir;
     }
 
-    public String getStateFilePath(){
+    public String getStateFilePath() {
         return stateFilePath;
     }
 
-    public int getResidenceHistoryMax(){
+    public int getResidenceHistoryMax() {
         return residenceHistoryMax;
     }
 
-    public boolean isRoomStatusChangeEnabled(){
+    public boolean isRoomStatusChangeEnabled() {
         return isRoomStatusChangeEnabled;
     }
 
@@ -73,14 +73,13 @@ public class Config {
     private String jdbc_url;
 
     @Value("${jdbc.user:postgres}")
-    private String jdbc_user ;
+    private String jdbc_user;
 
     @Value("${jdbc.password:postgres}")
     private String jdbc_password;
 
     @Value("${jdbc.driver:org.postgresql.Driver}")
     private String jdbc_driver;
-
 
 
 }

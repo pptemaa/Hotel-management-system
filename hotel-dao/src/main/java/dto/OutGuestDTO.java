@@ -2,9 +2,12 @@ package dto;
 
 public class OutGuestDTO {
     private int number;
-    public OutGuestDTO(){}
-    public OutGuestDTO(int number){
-        this.number=number;
+
+    public OutGuestDTO() {
+    }
+
+    public OutGuestDTO(int number) {
+        this.number = number;
     }
 
     public int getNumber() {

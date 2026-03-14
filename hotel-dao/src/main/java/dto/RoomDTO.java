@@ -12,26 +12,46 @@ public class RoomDTO {
     }
 
 
-    public RoomDTO(int id, int number, double price, String status,int stars,int capacity) {
+    public RoomDTO(int id, int number, double price, String status, int stars, int capacity) {
         this.id = id;
         this.number = number;
         this.price = price;
         this.status = status;
-        this.stars=stars;
-        this.capacity=capacity;
+        this.stars = stars;
+        this.capacity = capacity;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
 
-    public int getNumber() { return number; }
-    public void setNumber(int number) { this.number = number; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+    public int getNumber() {
+        return number;
+    }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public int getStars() {
         return stars;

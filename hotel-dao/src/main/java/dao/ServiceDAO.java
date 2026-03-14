@@ -7,10 +7,12 @@ import model.Service;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
 public class ServiceDAO {
     @PersistenceContext
     private EntityManager em;
+
     public List<Service> findAll() throws HotelException {
         try {
             return em.createQuery("SELECT s FROM Service s", Service.class).getResultList();
@@ -18,6 +20,7 @@ public class ServiceDAO {
             throw new HotelException("Ошибка при загрузке услуг из БД", e);
         }
     }
+
     public void save(Service service) throws HotelException {
         try {
             em.persist(service);
